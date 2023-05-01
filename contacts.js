@@ -22,14 +22,14 @@ const updateContacs = async (contacts) => {
 
 const removeContact = async (contactId) => {
   const contacts = await listContacts();
-  const index = contacts.findIndex((item) => item.id === contactId);
+  const index = contacts.findIndex(({ id }) => id === contactId);
   if (index === -1) {
     return null;
   }
-  const [result] = contacts.splice(index, 1);
+  const [removeContact] = contacts.splice(index, 1);
   await updateContacs(contacts);
   console.log(contacts);
-  return result;
+  return removeContact;
 };
 
 const addContact = async (name, email, phone) => {
